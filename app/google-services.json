@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "747776544912",
+    "firebase_url": "https://smart-homestay.firebaseio.com",
+    "project_id": "smart-homestay",
+    "storage_bucket": "smart-homestay.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747776544912:android:283bea605454bf07",
+        "android_client_info": {
+          "package_name": "com.example.asus.smarthomestay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "747776544912-c6kt3amhnttjfceilvqkkf8ec5856juc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.asus.smarthomestay",
+            "certificate_hash": "d7b6c3f96717a9d31d5d9d9a893f34a2f85d0d75"
+          }
+        },
+        {
+          "client_id": "747776544912-el5f93lciuhjdk67ftv6gu5ksudst63k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEh9MxWZDXcAXnC8zlGVTRJAR2ULEcYRs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "747776544912-el5f93lciuhjdk67ftv6gu5ksudst63k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

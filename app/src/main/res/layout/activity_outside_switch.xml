@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.asus.smarthomestay.OutsideSwitch">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/app_bar_rooms"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="122dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="88dp"
+            android:lineSpacingExtra="14sp"
+            android:text=" Suis Luar Rumah"
+            android:textSize="14sp"
+            android:typeface="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TimePicker
+            android:id="@+id/timePicker"
+            android:layout_width="300dp"
+            android:layout_height="150dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:timePickerMode="spinner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView1" />
+
+        <Button
+            android:id="@+id/onSwitchOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="48dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="36dp"
+            android:text="Set Suis Luar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/timePicker"
+            tools:clickable="true" />
+
+        <Button
+            android:id="@+id/offSwitchOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="40dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="36dp"
+            android:text="Tutup Suis Luar"
+            app:layout_constraintEnd_toEndOf="@+id/include"
+            app:layout_constraintStart_toEndOf="@+id/onSwitchOut"
+            app:layout_constraintTop_toBottomOf="@+id/timePicker"
+            tools:clickable="true" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="92dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="48dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="28dp"
+            android:text="Suis Disetkan:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/onSwitchOut" />
+
+        <TextView
+            android:id="@+id/switchCondition"
+            android:layout_width="188dp"
+            android:layout_height="26dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/offSwitchOut" /> <!-- time picker mode of a time picker -->
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+
+        app:menu="@menu/activity_rooms_drawer" />
+
+</android.support.v4.widget.DrawerLayout>
