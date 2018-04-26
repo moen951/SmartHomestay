@@ -485,16 +485,6 @@ public class SwitchActivity extends AppCompatActivity implements NavigationView.
         return true;
     }
 
-    private boolean updateAllSwitch (String switch1, boolean state1)
-    {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl(SWITCH_URL).child(switch1);
-
-
-        databaseReference.setValue(state1);
-
-        Toast.makeText(this,"Switch for "+switch1+ " is save in the database",Toast.LENGTH_LONG).show();
-        return true;
-    }
 
     @Override
     public void onBackPressed() {

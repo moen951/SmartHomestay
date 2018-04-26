@@ -50,8 +50,6 @@ public class SignIn extends AppCompatActivity {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
 
-
-
                             //Check if user not exist in database
                             if (dataSnapshot.child(userName.getText().toString()).exists()) {
                                 //Get User Information
@@ -61,7 +59,7 @@ public class SignIn extends AppCompatActivity {
 
                                 if (user.getPassword().equals(password.getText().toString())) {
                                     {
-                                        Intent homeIntent = new Intent(SignIn.this,SwitchActivity.class);
+                                        Intent homeIntent = new Intent(SignIn.this,RoomSelection.class);
                                         Common.currentUser = user;
                                         startActivity(homeIntent);
                                         finish();
