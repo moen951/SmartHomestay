@@ -27,7 +27,7 @@
 
         <receiver android:name=".SwitchTimeReceiver" />
 
-
+        <activity android:name=".RoomSelection"></activity>
     </application>
 
 </manifest>
