@@ -124,8 +124,7 @@ public class OutsideSwitch extends AppCompatActivity implements NavigationView.O
 
                 // create pending intent to delay the intent until the time arrive
 
-                pendingIntent= PendingIntent.getBroadcast(OutsideSwitch.this, 0,
-                        intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                pendingIntent= PendingIntent.getBroadcast(OutsideSwitch.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
                 //set the alarm manager
                 switch_alarm.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY, pendingIntent);

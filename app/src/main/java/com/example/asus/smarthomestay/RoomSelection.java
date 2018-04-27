@@ -1,7 +1,9 @@
 package com.example.asus.smarthomestay;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -15,6 +17,8 @@ public class RoomSelection extends AppCompatActivity {
 
     private static final String SWITCH_URL = "https://smart-homestay.firebaseio.com/";
 
+    Context context;
+
 
 
     Button house1, house2;
@@ -23,6 +27,8 @@ public class RoomSelection extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_selection);
+
+        this.context=this;
 
         house1= (Button) findViewById(R.id.house1);
         house2= (Button) findViewById(R.id.house2);
@@ -41,6 +47,13 @@ public class RoomSelection extends AppCompatActivity {
                 if (status)
                 {
                     house1.setEnabled(false);
+                }else {
+                    house1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                    });
                 }
 
 
