@@ -1,5 +1,6 @@
 package com.example.asus.smarthomestay;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -35,6 +36,8 @@ public class SwitchActivity extends AppCompatActivity implements NavigationView.
 
     private switch_all smart_homestay;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +45,12 @@ public class SwitchActivity extends AppCompatActivity implements NavigationView.
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        SharedPreferences sharedpreferences = getSharedPreferences(RoomSelection.MyPREFERENCES, Context.MODE_PRIVATE);
+
+        final String home= sharedpreferences.getString("House", "defaultStringIfNothingFound");
+        final String room=sharedpreferences.getString("Room", "defaultStringIfNothingFound");
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout1);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -60,14 +69,32 @@ public class SwitchActivity extends AppCompatActivity implements NavigationView.
         room2 = (Switch) findViewById(R.id.switchRoom2);
         room3 = (Switch) findViewById(R.id.switchRoom3);
 
+        //Toast.makeText(getApplicationContext(), sharedpreferences.getString("Status", "defaultStringIfNothingFound") , Toast.LENGTH_LONG).show();
+
         //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         //FirebaseDatabase.getInstance();
-        smartHomestayDatabaseRef = FirebaseDatabase.getInstance().getReferenceFromUrl(SWITCH_URL);
+        //smartHomestayDatabaseRef  = FirebaseDatabase.getInstance().getReferenceFromUrl(SWITCH_URL);
 
-        smartHomestayDatabaseRef.addValueEventListener(new ValueEventListener() {
+
+        final DatabaseReference data =FirebaseDatabase.getInstance().getReference();
+        final DatabaseReference getData = data.child(home).child(room);
+
+
+        getData.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-             smart_homestay= dataSnapshot.getValue(switch_all.class);
+
+                boolean bilik1Data = dataSnapshot.child("bilik1").getValue(boolean.class);
+                boolean bilik2Data =dataSnapshot.child("bilik2").getValue(boolean.class);
+                boolean bilik3Data =dataSnapshot.child("bilik3").getValue(boolean.class);
+                boolean fanData =dataSnapshot.child("fan").getValue(boolean.class);
+                boolean lightData =dataSnapshot.child("light").getValue(boolean.class);
+                boolean livingRoomData =dataSnapshot.child("livingRoom").getValue(boolean.class);
+
+               // System.out.println( dataSnapshot.child().getValue(boolean.class));
+             smart_homestay=  new switch_all(livingRoomData,fanData,lightData,bilik1Data,bilik2Data,bilik3Data);
+//             dataSnapshot.getValue(switch_all.class);
+
             }
 
             @Override
@@ -167,7 +194,7 @@ public class SwitchActivity extends AppCompatActivity implements NavigationView.
                     for ( int i=0;i<switchCon.length; i++)
                     {
 
-                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl(SWITCH_URL).child(switchCon[i]);
+                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(home).child(room).child(switchCon[i]);
 
                         databaseReference.setValue(state);
                     }
@@ -215,7 +242,7 @@ public class SwitchActivity extends AppCompatActivity implements NavigationView.
                     for ( int i=0;i<switchCon.length; i++)
                     {
 
-                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl(SWITCH_URL).child(switchCon[i]);
+                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(home).child(room).child(switchCon[i]);
 
                         databaseReference.setValue(state);
                     }
@@ -477,7 +504,12 @@ public class SwitchActivity extends AppCompatActivity implements NavigationView.
 
     private boolean updateSwitch (String switchCon, boolean state)
     {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl(SWITCH_URL).child(switchCon);
+        SharedPreferences sharedpreferences1 = getSharedPreferences(RoomSelection.MyPREFERENCES, Context.MODE_PRIVATE);
+
+        final String home= sharedpreferences1.getString("House", "defaultStringIfNothingFound");
+        final String room= sharedpreferences1.getString("Room", "defaultStringIfNothingFound");
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(home).child(room).child(switchCon);
 
         databaseReference.setValue(state);
 

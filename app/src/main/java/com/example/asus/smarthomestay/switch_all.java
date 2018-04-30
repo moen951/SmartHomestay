@@ -73,8 +73,8 @@ public class switch_all {
         return LampuLuar;
     }
 
-    public switch_all(boolean Bilik1, boolean Bilik2, boolean Bilik3, boolean allSwitch, boolean LampuLuar,String name, String password) {
-        this.allSwitch = allSwitch;
+    public switch_all(boolean Bilik1, boolean Bilik2, boolean Bilik3, boolean LampuLuar,String name, String password) {
+
         this.Bilik1 = Bilik1;
         this.Bilik2 = Bilik2;
         this.Bilik3 = Bilik3;
@@ -83,9 +83,14 @@ public class switch_all {
         Password = password;
     }
 
-
-
-
+    public switch_all(boolean livingRoom, boolean fan, boolean light, boolean bilik1, boolean bilik2, boolean bilik3) {
+        this.livingRoom = livingRoom;
+        Fan = fan;
+        Light = light;
+        Bilik1 = bilik1;
+        Bilik2 = bilik2;
+        Bilik3 = bilik3;
+    }
 
     public void setLivingRoom(boolean livingRoom) {
         this.livingRoom = livingRoom;

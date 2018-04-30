@@ -1,6 +1,8 @@
 package com.example.asus.smarthomestay;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -22,6 +24,8 @@ public class RoomSelection extends AppCompatActivity {
 
 
     Button house1, house2;
+    SharedPreferences sharedpreferences;
+    public static final String MyPREFERENCES = "MyPrefs" ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +36,15 @@ public class RoomSelection extends AppCompatActivity {
 
         house1= (Button) findViewById(R.id.house1);
         house2= (Button) findViewById(R.id.house2);
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
 
         final DatabaseReference table_house1 =FirebaseDatabase.getInstance().getReference();
-        DatabaseReference status1 = table_house1.child("House").child("Room1").child("status1");
+        final DatabaseReference status1 = table_house1.child("House").child("Room1").child("status1");
 
         status1.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(final DataSnapshot dataSnapshot) {
                 boolean status= dataSnapshot.getValue(boolean.class);
 
                 Toast.makeText(RoomSelection.this, "Status 1:"+status, Toast.LENGTH_SHORT).show();
@@ -51,7 +56,16 @@ public class RoomSelection extends AppCompatActivity {
                     house1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-
+                            SharedPreferences.Editor edit = sharedpreferences.edit();
+//                            Toast.makeText(getApplicationContext(), room+" "+stat, Toast.LENGTH_SHORT).show();
+                            edit.putString("House","House");
+                            edit.putString("Room", "Room1");
+                            edit.putString("Status", "status1");
+                            edit.commit();
+                            Toast.makeText(getApplicationContext(), sharedpreferences.getAll().toString(), Toast.LENGTH_LONG).show();
+                            System.out.println(sharedpreferences.getAll().toString());
+                            Intent stats =new Intent(RoomSelection.this,SwitchActivity.class);
+                            startActivity(stats);
                         }
                     });
                 }
