@@ -269,10 +269,27 @@ public class SwitchActivity extends AppCompatActivity implements NavigationView.
                 {
                     sharedPreferencesLivingRoom.edit().putBoolean("isChecked2", true).apply();
                     smart_homestay.setLivingRoom(true);
-                    String switch7 = "livingRoom";
-                    boolean state7 = smart_homestay.isLivingRoom();
+                    smart_homestay.setLight(true);
+                    smart_homestay.setFan(true);
 
-                    updateSwitch(switch7,state7);
+
+                    fan.setChecked(true);
+                    light.setChecked(true);
+
+                    String switchCon[]=new String[3];
+                    boolean state=true;
+
+                    switchCon[0]="livingRoom";
+                    switchCon[1]="fan";
+                    switchCon[2]="light";
+
+                    for ( int i=0;i<switchCon.length; i++)
+                    {
+
+                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(home).child(room).child(switchCon[i]);
+
+                        databaseReference.setValue(state);
+                    }
 
                     //smartHomestayDatabaseRef.setValue(smart_homestay);
 
@@ -282,11 +299,27 @@ public class SwitchActivity extends AppCompatActivity implements NavigationView.
                 {
                     sharedPreferencesLivingRoom.edit().putBoolean("isChecked2", false).apply();
                     smart_homestay.setLivingRoom(false);
+                    smart_homestay.setLight(false);
+                    smart_homestay.setFan(false);
 
-                    String switch7 = "livingRoom";
-                    boolean state7 = smart_homestay.isLivingRoom();
 
-                    updateSwitch(switch7,state7);
+                    fan.setChecked(false);
+                    light.setChecked(false);
+
+                    String switchCon[]=new String[3];
+                    boolean state=false;
+
+                    switchCon[0]="livingRoom";
+                    switchCon[1]="fan";
+                    switchCon[2]="light";
+
+                    for ( int i=0;i<switchCon.length; i++)
+                    {
+
+                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(home).child(room).child(switchCon[i]);
+
+                        databaseReference.setValue(state);
+                    }
 
                     //smartHomestayDatabaseRef.setValue(smart_homestay);
 

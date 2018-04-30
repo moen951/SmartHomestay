@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -47,7 +46,7 @@ public class RoomSelection extends AppCompatActivity {
             public void onDataChange(final DataSnapshot dataSnapshot) {
                 boolean status= dataSnapshot.getValue(boolean.class);
 
-                Toast.makeText(RoomSelection.this, "Status 1:"+status, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(RoomSelection.this, "Status 1:"+status, Toast.LENGTH_SHORT).show();
 
                 if (status)
                 {
@@ -62,8 +61,48 @@ public class RoomSelection extends AppCompatActivity {
                             edit.putString("Room", "Room1");
                             edit.putString("Status", "status1");
                             edit.commit();
-                            Toast.makeText(getApplicationContext(), sharedpreferences.getAll().toString(), Toast.LENGTH_LONG).show();
-                            System.out.println(sharedpreferences.getAll().toString());
+//                            Toast.makeText(getApplicationContext(), sharedpreferences.getAll().toString(), Toast.LENGTH_LONG).show();
+//                            System.out.println(sharedpreferences.getAll().toString());
+                            Intent stats =new Intent(RoomSelection.this,SwitchActivity.class);
+                            startActivity(stats);
+                        }
+                    });
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        final DatabaseReference table_house2 =FirebaseDatabase.getInstance().getReference();
+        final DatabaseReference status2 = table_house2.child("House").child("Room2").child("status2");
+
+        status2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(final DataSnapshot dataSnapshot) {
+                boolean status= dataSnapshot.getValue(boolean.class);
+
+//                Toast.makeText(RoomSelection.this, "Status 1:"+status, Toast.LENGTH_SHORT).show();
+
+                if (status)
+                {
+                    house2.setEnabled(false);
+                }else {
+                    house2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            SharedPreferences.Editor edit = sharedpreferences.edit();
+//                            Toast.makeText(getApplicationContext(), room+" "+stat, Toast.LENGTH_SHORT).show();
+                            edit.putString("House","House");
+                            edit.putString("Room", "Room2");
+                            edit.putString("Status", "status2");
+                            edit.commit();
+//                            Toast.makeText(getApplicationContext(), sharedpreferences.getAll().toString(), Toast.LENGTH_LONG).show();
+//                            System.out.println(sharedpreferences.getAll().toString());
                             Intent stats =new Intent(RoomSelection.this,SwitchActivity.class);
                             startActivity(stats);
                         }
