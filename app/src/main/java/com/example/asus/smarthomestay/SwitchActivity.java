@@ -348,8 +348,9 @@ public class SwitchActivity extends AppCompatActivity implements NavigationView.
 
                     String switch7 = "fan";
                     boolean state7 = smart_homestay.isFan();
+                    String switchName= "Kipas";
 
-                    updateSwitch(switch7,state7);
+                    updateSwitch(switch7,state7,switchName);
                     //smartHomestayDatabaseRef.setValue(smart_homestay);
 
                 }
@@ -360,8 +361,9 @@ public class SwitchActivity extends AppCompatActivity implements NavigationView.
 
                     String switch7 = "fan";
                     boolean state7 = smart_homestay.isFan();
+                    String switchName= "Kipas";
 
-                    updateSwitch(switch7,state7);
+                    updateSwitch(switch7,state7,switchName);
                     //smartHomestayDatabaseRef.setValue(smart_homestay);
 
                 }
@@ -387,8 +389,9 @@ public class SwitchActivity extends AppCompatActivity implements NavigationView.
 
                     String switch7 = "light";
                     boolean state7 = smart_homestay.isLight();
+                    String switchName= "Lampu";
 
-                    updateSwitch(switch7,state7);
+                    updateSwitch(switch7,state7,switchName);
                     //smartHomestayDatabaseRef.setValue(smart_homestay);
 
                 }
@@ -399,8 +402,9 @@ public class SwitchActivity extends AppCompatActivity implements NavigationView.
 
                     String switch7 = "light";
                     boolean state7 = smart_homestay.isLight();
+                    String switchName= "Lampu";
 
-                    updateSwitch(switch7,state7);
+                    updateSwitch(switch7,state7,switchName);
                     //smartHomestayDatabaseRef.setValue(smart_homestay);
                 }
             }
@@ -427,8 +431,9 @@ public class SwitchActivity extends AppCompatActivity implements NavigationView.
 
                     String switch7 = "bilik1";
                     boolean state7 = smart_homestay.isBilik1();
+                    String switchName= "Bilik 1";
 
-                    updateSwitch(switch7,state7);
+                    updateSwitch(switch7,state7,switchName);
                     //smartHomestayDatabaseRef.setValue(smart_homestay);
 
                 }
@@ -439,8 +444,9 @@ public class SwitchActivity extends AppCompatActivity implements NavigationView.
 
                     String switch7 = "bilik1";
                     boolean state7 = smart_homestay.isBilik1();
+                    String switchName= "Bilik 1";
 
-                    updateSwitch(switch7,state7);
+                    updateSwitch(switch7,state7,switchName);
                     //smartHomestayDatabaseRef.setValue(smart_homestay);
                 }
             }
@@ -465,8 +471,9 @@ public class SwitchActivity extends AppCompatActivity implements NavigationView.
 
                     String switch7 = "bilik2";
                     boolean state7 = smart_homestay.isBilik2();
+                    String switchName= "Bilik 2";
 
-                    updateSwitch(switch7,state7);
+                    updateSwitch(switch7,state7,switchName);
                     //smartHomestayDatabaseRef.setValue(smart_homestay);
 
                 }
@@ -477,8 +484,9 @@ public class SwitchActivity extends AppCompatActivity implements NavigationView.
 
                     String switch7 = "bilik2";
                     boolean state7 = smart_homestay.isBilik2();
+                    String switchName= "Bilik 2";
 
-                    updateSwitch(switch7,state7);
+                    updateSwitch(switch7,state7,switchName);
                     //smartHomestayDatabaseRef.setValue(smart_homestay);
 
                 }
@@ -504,8 +512,9 @@ public class SwitchActivity extends AppCompatActivity implements NavigationView.
 
                     String switch7 = "bilik3";
                     boolean state7 = smart_homestay.isBilik3();
+                    String switchName= "Bilik 3";
 
-                    updateSwitch(switch7,state7);
+                    updateSwitch(switch7,state7,switchName);
 
                     //smartHomestayDatabaseRef.setValue(smart_homestay);
 
@@ -517,8 +526,9 @@ public class SwitchActivity extends AppCompatActivity implements NavigationView.
 
                     String switch7 = "bilik3";
                     boolean state7 = smart_homestay.isBilik3();
+                    String switchName= "Bilik 3";
 
-                    updateSwitch(switch7,state7);
+                    updateSwitch(switch7,state7,switchName);
 
                     //smartHomestayDatabaseRef.setValue(smart_homestay);
 
@@ -535,7 +545,7 @@ public class SwitchActivity extends AppCompatActivity implements NavigationView.
     }
 
 
-    private boolean updateSwitch (String switchCon, boolean state)
+    private boolean updateSwitch (String switchCon, boolean state, String switchName)
     {
         SharedPreferences sharedpreferences1 = getSharedPreferences(RoomSelection.MyPREFERENCES, Context.MODE_PRIVATE);
 
@@ -546,7 +556,7 @@ public class SwitchActivity extends AppCompatActivity implements NavigationView.
 
         databaseReference.setValue(state);
 
-        Toast.makeText(this,"Switch for "+switchCon+ " is save in the database",Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Suis untuk "+switchName+ " telah disimpan di dalam pengkalan data",Toast.LENGTH_SHORT).show();
         return true;
     }
 

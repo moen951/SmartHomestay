@@ -18,7 +18,54 @@ public class switch_all {
     private String Name;
     private String Password;
 
+    private boolean outsideRoom1;
+    private boolean outsideRoom2;
 
+    public switch_all() {
+
+    }
+
+    public switch_all(boolean Bilik1, boolean Bilik2, boolean Bilik3, boolean LampuLuar,String name, String password) {
+
+        this.Bilik1 = Bilik1;
+        this.Bilik2 = Bilik2;
+        this.Bilik3 = Bilik3;
+        this.LampuLuar=LampuLuar;
+        Name = name;
+        Password = password;
+    }
+
+    public switch_all(boolean livingRoom, boolean fan, boolean light, boolean bilik1, boolean bilik2, boolean bilik3) {
+        this.livingRoom = livingRoom;
+        Fan = fan;
+        Light = light;
+        Bilik1 = bilik1;
+        Bilik2 = bilik2;
+        Bilik3 = bilik3;
+    }
+
+
+
+    public switch_all(boolean outsideRoom1, boolean outsideRoom2) {
+        this.outsideRoom1 = outsideRoom1;
+        this.outsideRoom2 = outsideRoom2;
+    }
+
+    public boolean isOutsideRoom1() {
+        return outsideRoom1;
+    }
+
+    public void setOutsideRoom1(boolean outsideRoom1) {
+        this.outsideRoom1 = outsideRoom1;
+    }
+
+    public boolean isOutsideRoom2() {
+        return outsideRoom2;
+    }
+
+    public void setOutsideRoom2(boolean outsideRoom2) {
+        this.outsideRoom2 = outsideRoom2;
+    }
 
     public String getName() {
 
@@ -37,9 +84,7 @@ public class switch_all {
         Password = password;
     }
 
-    public switch_all() {
 
-    }
 
     public boolean isAllSwitch() {
         return allSwitch;
@@ -73,24 +118,7 @@ public class switch_all {
         return LampuLuar;
     }
 
-    public switch_all(boolean Bilik1, boolean Bilik2, boolean Bilik3, boolean LampuLuar,String name, String password) {
 
-        this.Bilik1 = Bilik1;
-        this.Bilik2 = Bilik2;
-        this.Bilik3 = Bilik3;
-        this.LampuLuar=LampuLuar;
-        Name = name;
-        Password = password;
-    }
-
-    public switch_all(boolean livingRoom, boolean fan, boolean light, boolean bilik1, boolean bilik2, boolean bilik3) {
-        this.livingRoom = livingRoom;
-        Fan = fan;
-        Light = light;
-        Bilik1 = bilik1;
-        Bilik2 = bilik2;
-        Bilik3 = bilik3;
-    }
 
     public void setLivingRoom(boolean livingRoom) {
         this.livingRoom = livingRoom;
