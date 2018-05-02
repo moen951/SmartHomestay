@@ -21,6 +21,10 @@ public class switch_all {
     private boolean outsideRoom1;
     private boolean outsideRoom2;
 
+    private boolean corridorSwitch;
+
+
+
     public switch_all() {
 
     }
@@ -50,6 +54,21 @@ public class switch_all {
         this.outsideRoom1 = outsideRoom1;
         this.outsideRoom2 = outsideRoom2;
     }
+
+    public switch_all(boolean corridorSwitch) {
+        this.corridorSwitch = corridorSwitch;
+    }
+
+
+    public boolean isCorridorSwitch() {
+        return corridorSwitch;
+    }
+
+    public void setCorridorSwitch(boolean corridorSwitch) {
+        this.corridorSwitch = corridorSwitch;
+    }
+
+
 
     public boolean isOutsideRoom1() {
         return outsideRoom1;

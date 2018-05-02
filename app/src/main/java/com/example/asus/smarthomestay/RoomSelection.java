@@ -26,7 +26,7 @@ public class RoomSelection extends AppCompatActivity {
     private switch_all smart_homestay;
 
     Button house1, house2;
-    Switch outsideRoom1,outsideRoom2;
+    Switch outsideRoom1,outsideRoom2,corridorSwitch;
     SharedPreferences sharedpreferences;
     public static final String MyPREFERENCES = "MyPrefs" ;
 
@@ -41,6 +41,7 @@ public class RoomSelection extends AppCompatActivity {
         house2= (Button) findViewById(R.id.house2);
         outsideRoom1=(Switch) findViewById(R.id.outsideRoom1);
         outsideRoom2=(Switch) findViewById(R.id.outsideRoom2);
+        corridorSwitch=(Switch) findViewById(R.id.corridorSwitch);
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
@@ -140,12 +141,14 @@ public class RoomSelection extends AppCompatActivity {
 
                 boolean outsideRoom1Data = dataSnapshot.child("Room1").child("outsideSwitch").getValue(boolean.class);
                 boolean outsideRoom2Data = dataSnapshot.child("Room2").child("outsideSwitch").getValue(boolean.class);
+                boolean corridorSwitchData= dataSnapshot.child("corridor").getValue(boolean.class);
 
 
-                //System.out.println( dataSnapshot.child("Room1").child("outsideSwitch").getValue(boolean.class));
-                //System.out.println( dataSnapshot.child("Room2").child("outsideSwitch").getValue(boolean.class));
+                //System.out.println( dataSnapshot.child("corridor").getValue(boolean.class));
+
                 smart_homestay=  new switch_all(outsideRoom1Data,outsideRoom2Data );
-//             dataSnapshot.getValue(switch_all.class);
+
+                smart_homestay= new switch_all(corridorSwitchData);
 
             }
 
@@ -241,12 +244,67 @@ public class RoomSelection extends AppCompatActivity {
             }
         });
 
+
+        boolean corridorSwitchValue= false;
+
+        final SharedPreferences sharedPreferencesCorridorSwitch = getSharedPreferences("isChecked", 0);
+
+        corridorSwitchValue = sharedPreferencesCorridorSwitch.getBoolean("isChecked",corridorSwitchValue);
+
+        corridorSwitch.setChecked(corridorSwitchValue);
+
+        corridorSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+
+                if (isChecked)
+                {  sharedPreferencesCorridorSwitch.edit().putBoolean("isChecked", true).apply();
+                    smart_homestay.setCorridorSwitch(true);
+
+
+                    String switchCor = "corridor";
+                    boolean state = smart_homestay.isCorridorSwitch();
+                    String switchName= "balkoni";
+
+                    updateSwitch2(switchCor,state,switchName);
+                    //smartHomestayDatabaseRef.setValue(smart_homestay);
+
+                }
+                else
+                {
+                    sharedPreferencesCorridorSwitch.edit().putBoolean("isChecked", false).apply();
+                    smart_homestay.setCorridorSwitch(false);
+
+
+                    String switchCor = "corridor";
+                    boolean state = smart_homestay.isCorridorSwitch();
+                    String switchName= "balkoni";
+
+                    updateSwitch2(switchCor,state,switchName);
+                    //smartHomestayDatabaseRef.setValue(smart_homestay);
+
+                }
+
+            }
+        });
+
     }
 
     private boolean updateSwitch (String room, String switchCon, boolean state, String switchName)
     {
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("House").child(room).child(switchCon);
+
+        databaseReference.setValue(state);
+
+        Toast.makeText(this,"Suis untuk "+switchName+ " telah disimpan di dalam pengkalan data",Toast.LENGTH_SHORT).show();
+        return true;
+    }
+
+    private boolean updateSwitch2 (String switchCon, boolean state, String switchName)
+    {
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("House").child(switchCon);
 
         databaseReference.setValue(state);
 
