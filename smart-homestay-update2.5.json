@@ -1,0 +1,30 @@
+{
+  "House" : {
+    "Room1" : {
+      "bilik1" : false,
+      "bilik2" : false,
+      "bilik3" : false,
+      "fan" : false,
+      "light" : false,
+      "livingRoom" : false,
+      "outsideSwitch" : false,
+      "status1" : true
+    },
+    "Room2" : {
+      "bilik1" : false,
+      "bilik2" : false,
+      "bilik3" : false,
+      "fan" : false,
+      "light" : false,
+      "livingRoom" : false,
+      "outsideSwitch" : false,
+      "status2" : false
+    },
+    "corridor" : false
+  },
+  "user" : {
+    "m" : {
+      "password" : "123"
+    }
+  }
+}
