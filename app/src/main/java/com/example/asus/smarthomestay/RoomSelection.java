@@ -54,39 +54,30 @@ public class RoomSelection extends AppCompatActivity {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
 
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        boolean status= dataSnapshot.getValue(boolean.class);
+                boolean status= dataSnapshot.getValue(boolean.class);
 
 //                Toast.makeText(RoomSelection.this, "Status 1:"+status, Toast.LENGTH_SHORT).show();
 
-                        if (status)
-                        {
-                            house1.setEnabled(false);
-                        }else {
-                            house1.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    SharedPreferences.Editor edit = sharedpreferences.edit();
+                if (status)
+                {
+                    house1.setEnabled(false);
+                }else {
+                    house1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            SharedPreferences.Editor edit = sharedpreferences.edit();
 //                            Toast.makeText(getApplicationContext(), room+" "+stat, Toast.LENGTH_SHORT).show();
-                                    edit.putString("House","House");
-                                    edit.putString("Room", "Room1");
-                                    edit.putString("Status", "status1");
-                                    edit.commit();
+                            edit.putString("House","House");
+                            edit.putString("Room", "Room1");
+                            edit.putString("Status", "status1");
+                            edit.commit();
 //                            Toast.makeText(getApplicationContext(), sharedpreferences.getAll().toString(), Toast.LENGTH_LONG).show();
 //                            System.out.println(sharedpreferences.getAll().toString());
-                                    Intent stats =new Intent(RoomSelection.this,SwitchActivity.class);
-                                    startActivity(stats);
-                                }
-                            });
+                            Intent stats =new Intent(RoomSelection.this,SwitchActivity.class);
+                            startActivity(stats);
                         }
-
-                    }
-                }).start();
-
-
+                    });
+                }
 
             }
 
@@ -106,37 +97,30 @@ public class RoomSelection extends AppCompatActivity {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
 
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        boolean status= dataSnapshot.getValue(boolean.class);
+                boolean status= dataSnapshot.getValue(boolean.class);
 
 //                Toast.makeText(RoomSelection.this, "Status 1:"+status, Toast.LENGTH_SHORT).show();
 
-                        if (status)
-                        {
-                            house2.setEnabled(false);
-                        }else {
-                            house2.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    SharedPreferences.Editor edit = sharedpreferences.edit();
+                if (status)
+                {
+                    house2.setEnabled(false);
+                }else {
+                    house2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            SharedPreferences.Editor edit = sharedpreferences.edit();
 //                            Toast.makeText(getApplicationContext(), room+" "+stat, Toast.LENGTH_SHORT).show();
-                                    edit.putString("House","House");
-                                    edit.putString("Room", "Room2");
-                                    edit.putString("Status", "status2");
-                                    edit.commit();
+                            edit.putString("House","House");
+                            edit.putString("Room", "Room2");
+                            edit.putString("Status", "status2");
+                            edit.commit();
 //                            Toast.makeText(getApplicationContext(), sharedpreferences.getAll().toString(), Toast.LENGTH_LONG).show();
 //                            System.out.println(sharedpreferences.getAll().toString());
-                                    Intent stats =new Intent(RoomSelection.this,SwitchActivity.class);
-                                    startActivity(stats);
-                                }
-                            });
+                            Intent stats =new Intent(RoomSelection.this,SwitchActivity.class);
+                            startActivity(stats);
                         }
-
-
-                    }
-                }).start();
+                    });
+                }
 
 
             }
