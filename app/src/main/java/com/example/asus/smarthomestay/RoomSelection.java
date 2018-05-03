@@ -46,36 +46,46 @@ public class RoomSelection extends AppCompatActivity {
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
 
+
         final DatabaseReference table_house1 =FirebaseDatabase.getInstance().getReference();
         final DatabaseReference status1 = table_house1.child("House").child("Room1").child("status1");
 
         status1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
-                boolean status= dataSnapshot.getValue(boolean.class);
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        boolean status= dataSnapshot.getValue(boolean.class);
 
 //                Toast.makeText(RoomSelection.this, "Status 1:"+status, Toast.LENGTH_SHORT).show();
 
-                if (status)
-                {
-                    house1.setEnabled(false);
-                }else {
-                    house1.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            SharedPreferences.Editor edit = sharedpreferences.edit();
+                        if (status)
+                        {
+                            house1.setEnabled(false);
+                        }else {
+                            house1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    SharedPreferences.Editor edit = sharedpreferences.edit();
 //                            Toast.makeText(getApplicationContext(), room+" "+stat, Toast.LENGTH_SHORT).show();
-                            edit.putString("House","House");
-                            edit.putString("Room", "Room1");
-                            edit.putString("Status", "status1");
-                            edit.commit();
+                                    edit.putString("House","House");
+                                    edit.putString("Room", "Room1");
+                                    edit.putString("Status", "status1");
+                                    edit.commit();
 //                            Toast.makeText(getApplicationContext(), sharedpreferences.getAll().toString(), Toast.LENGTH_LONG).show();
 //                            System.out.println(sharedpreferences.getAll().toString());
-                            Intent stats =new Intent(RoomSelection.this,SwitchActivity.class);
-                            startActivity(stats);
+                                    Intent stats =new Intent(RoomSelection.this,SwitchActivity.class);
+                                    startActivity(stats);
+                                }
+                            });
                         }
-                    });
-                }
+
+                    }
+                }).start();
+
 
 
             }
@@ -95,30 +105,39 @@ public class RoomSelection extends AppCompatActivity {
         status2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
-                boolean status= dataSnapshot.getValue(boolean.class);
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        boolean status= dataSnapshot.getValue(boolean.class);
 
 //                Toast.makeText(RoomSelection.this, "Status 1:"+status, Toast.LENGTH_SHORT).show();
 
-                if (status)
-                {
-                    house2.setEnabled(false);
-                }else {
-                    house2.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            SharedPreferences.Editor edit = sharedpreferences.edit();
+                        if (status)
+                        {
+                            house2.setEnabled(false);
+                        }else {
+                            house2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    SharedPreferences.Editor edit = sharedpreferences.edit();
 //                            Toast.makeText(getApplicationContext(), room+" "+stat, Toast.LENGTH_SHORT).show();
-                            edit.putString("House","House");
-                            edit.putString("Room", "Room2");
-                            edit.putString("Status", "status2");
-                            edit.commit();
+                                    edit.putString("House","House");
+                                    edit.putString("Room", "Room2");
+                                    edit.putString("Status", "status2");
+                                    edit.commit();
 //                            Toast.makeText(getApplicationContext(), sharedpreferences.getAll().toString(), Toast.LENGTH_LONG).show();
 //                            System.out.println(sharedpreferences.getAll().toString());
-                            Intent stats =new Intent(RoomSelection.this,SwitchActivity.class);
-                            startActivity(stats);
+                                    Intent stats =new Intent(RoomSelection.this,SwitchActivity.class);
+                                    startActivity(stats);
+                                }
+                            });
                         }
-                    });
-                }
+
+
+                    }
+                }).start();
 
 
             }
@@ -136,8 +155,6 @@ public class RoomSelection extends AppCompatActivity {
         getData.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
-
 
                 boolean outsideRoom1Data = dataSnapshot.child("Room1").child("outsideSwitch").getValue(boolean.class);
                 boolean outsideRoom2Data = dataSnapshot.child("Room2").child("outsideSwitch").getValue(boolean.class);
