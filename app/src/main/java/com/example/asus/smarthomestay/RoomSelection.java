@@ -109,7 +109,6 @@ public class RoomSelection extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-
                         boolean status= dataSnapshot.getValue(boolean.class);
 
 //                Toast.makeText(RoomSelection.this, "Status 1:"+status, Toast.LENGTH_SHORT).show();
@@ -155,6 +154,8 @@ public class RoomSelection extends AppCompatActivity {
         getData.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
+
 
                 boolean outsideRoom1Data = dataSnapshot.child("Room1").child("outsideSwitch").getValue(boolean.class);
                 boolean outsideRoom2Data = dataSnapshot.child("Room2").child("outsideSwitch").getValue(boolean.class);
